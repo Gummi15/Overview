@@ -1,0 +1,45 @@
+template<typename VecType>
+double MixtDensityScale(const VecType& vOmega, const VecType& vD_log, const int& M) {
+  VecType wp_log = log(vOmega) + vD_log;
+  
+  double dK = max(wp_log);
+  
+  VecType wp_log_scaled = wp_log - dK;
+  
+  double dLK = 0;
+  for (int i = 0; i < M; i++) {
+    dLK += exp(wp_log_scaled(i));
+  }
+  
+  double dLLK = dK + log(dLK);
+  
+  if (dLLK < -1e150) {
+    dLLK = -1e50;
+  }
+  
+  return dLLK;
+}
+
+
+template<typename VecType, typename MatType>
+double getLLK(const VecType& vY, const MatType& mMu, const MatType& mSigma2, const MatType& mWeight,
+              const std::string& iDist, const VecType& Nu) {
+    int iT = vY.size();
+    int K = mMu.n_rows;
+    VecType vLLK(iT);
+
+    for (int i = 0; i < iT; i++) {
+        double y = vY(i);
+        const VecType& muCol = mMu.col(i);
+        const VecType& sigmaCol = sqrt(mSigma2.col(i));
+
+        if (iDist == "norm") {
+            vLLK(i) = MixtDensityScale(mWeight.col(i), log(vPdfnorm(y, muCol, sigmaCol, K)), K);
+        } else if (iDist == "std") {
+            vLLK(i) = MixtDensityScale(mWeight.col(i), log(vStddens(y, muCol, sigmaCol, Nu)), K);
+        }
+    }
+
+    double output = accu(vLLK);
+    return output;
+}
