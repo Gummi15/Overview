@@ -1,3 +1,35 @@
+
+template<typename VecType>
+VecType pdfnorm(const VecType& x, const VecType& Mu, const VecType& Sigma) {
+    VecType pdf = exp(-0.5 * square(x - Mu) / square(Sigma)) / (sqrt(2.0 * arma::datum::pi) * Sigma);
+    for (size_t i = 0; i < pdf.size(); i++) {
+        if (pdf(i) == 0.0)
+            pdf(i) = 2.22507e-24;
+    }
+    return pdf;
+}
+
+
+template<typename VecType>
+VecType stddens(const typename VecType::elem_type& x, const VecType& Mu, const VecType& Sigma, const VecType& Nu) {
+    const size_t K = Nu.size();
+    VecType a(K);
+    VecType b(K);
+    VecType pdf(K);
+    
+    for (size_t i = 0; i < K; i++) {
+        a(i) = Rf_gammafn((Nu(i) + 1.0) / 2.0) / (sqrt(arma::datum::pi * (Nu(i) - 2)) * Sigma(i));
+        b(i) = Rf_gammafn(Nu(i) / 2.0) * pow((1 + pow((x - Mu(i)), 2) / (pow(Sigma(i), 2) * (Nu(i) - 2))), ((Nu(i) + 1) / 2));
+    }
+    
+    pdf = a / b;
+    
+    return pdf;
+}
+
+
+
+
 template<typename VecType>
 double MixtDensityScale(const VecType& vOmega, const VecType& vD_log, const int& M) {
   VecType wp_log = log(vOmega) + vD_log;
