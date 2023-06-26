@@ -46,6 +46,54 @@ MixSim.DAMM(spec, data) {
   
   }
 
+f_MLFit <- function(vY, Spec) {
+  
+  K <- Spec[["K"]]
+  Model <- Spec[["Model"]]
+  iType <- Spec[["iType"]]
+  iDist <- Spec[["iDist"]]
+  do.mix <- Spec[["do.mix"]]
+  EMOnly <- Spec$EMOnly
+  OptimMethod <- Spec$Optim_Method
+  
+  if(K > 1){
+    #Find the starting values
+    StartValues <- f_Starting_values(vY, Spec, EMOnly = EMOnly)
+    Fit <- f_optimizer(vY, Spec, StartValues)
+    
+    if(do.mix) {
+      while(abs(Fit$lPn$wKappa) > 1.5) {
+        Fit <- f_optimizer(vY, Spec, StartValues)
+      }
+    }
+    
+  } else {
+    return(0)
+  }
+  
+  lPn <- Fit$lPn
+  
+  if(do.mix == FALSE) {
+    lPn[["mGamma"]] <- f_Gamma(lPn$vGamma, K)
+  }
+  
+  lOut <- list()
+  if(OptimMethod == "DEoptim") {
+    lOut[["llk"]] <- -Fit$Optimed$optim$bestval
+    lOut[["Bestpop"]] <- Fit$Optimed$member$pop
+    #tmp_optim
+  } else {
+    lOut[["llk"]] <- -Fit$Optimed$value
+  }
+  
+  lOut[["StartValues"]] <- Fit$StartValues
+  lOut[["lPn"]] <- lPn
+  lOut[["Spec"]] <- Spec
+  lOut[["vY"]] <- vY
+  
+  return(lOut)
+}
+
 
 MixGas <- function(spec, vY, lPn, StartVal) {
   UseMethod(generic = "MixGAS", spec)
