@@ -1,29 +1,20 @@
 // This is a short description of the experience that I have in C++.
 
-
-// This is a short description of the experience that I have in C++.
-
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# I have used R for:
-# - Econometric time series: GARCH-type models, ARIMA models, realized volatility, Brownian motions, VAR models, State-Space models, network analysis
-# - Monte Carlo Simulation: Generating random variables, numerical integration, Bayesian statistics, hidden Markov models, Markov Chain Monte Carlo,
-# - Machine learning/Statistical leanrning: (Spectral) Cluster analysis, linear/quadratic discriminant analysis, kernel methods, kernel density estimation
-# - Data processing & data analysis: Very broad, but many different types of data supplied by clients in my job as consultant.
+# I have used C++ for:
+# - Econometric time series: GARCH-type models, Markov-switching GAS models, DAMM models
+# - Monte Carlo Simulation: density estimation
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // Books I have read
 
-# "R for Data Science" (2016), by Garrett Grolemund and Hadley Wickham - https://r4ds.had.co.nz/
-# "Advanced R, Second Edition" (2019), by Hadley Wickham - https://adv-r.hadley.nz/
-# "The R Inferno" (2012), by Patrick Burns - https://www.burns-stat.com/pages/Tutor/R_inferno.pdf
+// "Learn C++" --- https://www.learncpp.com/
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // Short overview of some of the packages I have experience with
-
-
 
 // ----------------------------------------------------------------------------------------------------------------------------
 // The code preseneted here is code that I wrote for my master's thesis. 
