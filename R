@@ -70,8 +70,6 @@ MixSim <- function(spec, data, ctr = list()) {
   }
 
 MixSim.DAMM(spec, data) {
-
-  
   }
 
 f_MLFit <- function(vY, Spec) {
@@ -101,7 +99,7 @@ f_MLFit <- function(vY, Spec) {
   
   lPn <- Fit$lPn
   
-  if(do.mix == FALSE) {
+  if(!do.mix) {
     lPn[["mGamma"]] <- f_Gamma(lPn$vGamma, K)
   }
   
@@ -109,7 +107,6 @@ f_MLFit <- function(vY, Spec) {
   if(OptimMethod == "DEoptim") {
     lOut[["llk"]] <- -Fit$Optimed$optim$bestval
     lOut[["Bestpop"]] <- Fit$Optimed$member$pop
-    #tmp_optim
   } else {
     lOut[["llk"]] <- -Fit$Optimed$value
   }
@@ -127,7 +124,6 @@ MixGas <- function(spec, vY, lPn, StartVal) {
   UseMethod(generic = "MixGAS", spec)
   }
 
-#Negative LLK function
 fn_LLK <- function(vPw, vY, Spec, StartVal, vNames) {
   vPw <- setNames(vPw, vNames)
   do.mix = Spec$do.mix
@@ -170,7 +166,6 @@ fn_LLK <- function(vPw, vY, Spec, StartVal, vNames) {
 }
 
 
-
 f_optimizer <- function(vY, Spec, StartValues) {
   
   K <- Spec$K
@@ -188,8 +183,6 @@ f_optimizer <- function(vY, Spec, StartValues) {
     lPn0[["wA"]] <- setNames(rep(2.25, (K-1)), c("wA_1"))
     lPn0[["wB"]] <- setNames(rep(0.95, (K-1)), c("wB_1"))
     
-    #lPn0 <- StartValues$lPn0W
-    
     lPn0[["vKappa"]] <- (StartValues$Start_Par_GARCH[,1])
     lPn0[["vA"]] <- StartValues$Start_Par_GARCH[,2]
     lPn0[["vB"]] <- StartValues$Start_Par_GARCH[,3]
@@ -200,11 +193,9 @@ f_optimizer <- function(vY, Spec, StartValues) {
     lPn0[["vB"]] <- setNames(c(0.97, 0.96), c("vB_1", "vB_2"))
     lPn0[["vMu"]] <- setNames(StartValues$vMu_start[1:(K-1)], c("vMu_1")) 
     
-    
     if(iDist == "std") {
       lPn0[["vNu"]] <- StartValues$vNu
     }
-    
     
     #Next unmap them
     lPw <- f_lPn2lPw(lPn0, Spec)
@@ -226,8 +217,6 @@ f_optimizer <- function(vY, Spec, StartValues) {
       if(iDist == "std") {
         LowerLimit <- c(LowerLimit, rep(2.1, K))
         UpperLimit <- c(UpperLimit, rep(vNu_Upper(), K))
-        #LowerLimit <- c(LowerLimit, rep(-20, K))
-        #UpperLimit <- c(UpperLimit, rep(20, K))
       }
       
       clusterExport(MyCluster, c("f_v2l", "f_lPw2lPn", "f_map", "wA_Upper", "vA_Lower", "vA_Upper", "vB_Lower", "vB_Upper", "MixGAS", 
@@ -247,7 +236,6 @@ f_optimizer <- function(vY, Spec, StartValues) {
     OutPut <- tmp_optim
   } else {
     
-    
     lPn0 <- list()
     
     lPn0[["mGamma"]] <- StartValues$mGamma_start
@@ -263,10 +251,6 @@ f_optimizer <- function(vY, Spec, StartValues) {
     
     if(iDist == "std") {
       lPn0[["vNu"]] <- StartValues$vNu
-    }
-    
-    if(iType == "GJR") {
-      lPn0[["vPhi"]] <- rep(2*(0.9999 - 0.9998), K)
     }
     
     #Next unmap them
