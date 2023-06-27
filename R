@@ -1,4 +1,13 @@
-# Examples of code I have written in R.
+# This is a short describtion of the experience that I have in R.
+# It includes an overview of the books I have read in order to improve my R skills, what I have used R for, 
+# the packages I have used in connection with this, and some examples of code I have written
+
+# Books I have read
+
+
+
+
+
 
 #First part  was to create a spec that would hold information of what model it was, optimization method etc.
 
