@@ -65,12 +65,19 @@ CreateSpec <- function(Model, iDist = "norm", K, OptimMethod = "Optim", Scaling 
   return(lOut)
 }
 
-MixSim <- function(spec, data, ctr = list()) {
+const List& Spec, const int& iT, const List& lP, const List& StartValues
+
+MixSim <- function(spec, iT, lP, StartValues) {
   UseMethod(generic = "MixSim", spec)
   }
 
-MixSim.DAMM(spec, data) {
-  }
+MixSim.DAMM <- function(spec, iT, lP, StartValues) {
+  MixSim_DAMM(spec, iT, lP, StartValues)
+}
+
+MixSim.MS <- function(spec, iT, lP, StartValues) {
+  MixSim_MS(spec, iT, lP, StartValues)
+}
 
 f_MLFit <- function(vY, Spec) {
   
