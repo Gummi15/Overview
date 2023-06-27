@@ -2,9 +2,9 @@
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# I have used C++ for:
-# - Econometric time series: GARCH-type models, Markov-switching GAS models, DAMM models
-# - Monte Carlo Simulation: density estimation
+// I have used C++ for:
+// - Econometric time series: GARCH-type models, Markov-switching GAS models, DAMM models
+// - Monte Carlo Simulation: density estimation
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
