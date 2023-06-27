@@ -69,7 +69,7 @@ double getLLK(const VecType& vY, const MatType& mMu, const MatType& mSigma2, con
 
 
 // [[Rcpp::export]]
-List MixGAS(const arma::vec& vY, const List& lP, const List& Spec, const List& StartValues) {
+List Mixgas.DAMM(const arma::vec& vY, const List& lP, const List& Spec, const List& StartValues) {
   
   //Get the spec
   int iT = vY.size();
