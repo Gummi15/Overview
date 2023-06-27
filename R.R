@@ -1,6 +1,4 @@
 # This is a short describtion of the experience that I have in R.
-# It includes an overview of what I have used R for, the books I have read in order to improve my R skills, 
-# the packages I have used in connection with this, and some examples of code I have written
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
