@@ -124,6 +124,14 @@ MixGas <- function(spec, vY, lPn, StartVal) {
   UseMethod(generic = "MixGAS", spec)
   }
 
+MixGas.DAMM <- function(spec, vY, lPn, StartVal) {
+  MixGas_DAMM(spec, vY, lPn, StartVal)
+}
+
+MixGas.MS <- function(spec, vY, lPn, StartVal) {
+  MixGas_MS(spec, vY, lPn, StartVal)
+}
+
 fn_LLK <- function(vPw, vY, Spec, StartVal, vNames) {
   vPw <- setNames(vPw, vNames)
   do.mix = Spec$do.mix
