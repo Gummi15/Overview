@@ -32,8 +32,7 @@
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# The code presented here is part of the code that I wrote for master's thesis. The idea is to show some of my skills and experience in R. 
-# "Some" as I want it to be something that gives a good idea of my skills and experience, but still fairly quick to read.
+# The code presented here is part of the code that I wrote for master's thesis.
 
 CreateSpec <- function(Model, iDist = "norm", K, OptimMethod = "Optim", Scaling = 0.5, UseGASP = FALSE, dNP = 10, EMOnly = F) {
   
