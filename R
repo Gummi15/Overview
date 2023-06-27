@@ -28,6 +28,7 @@
 # and then integrating the C++ using the "Rcpp" and "RcppArmadillo" packages --- https://www.rcpp.org/, https://cran.r-project.org/web/packages/RcppArmadillo/index.html
 # - Another package I have used to sped up calculations is the "parallel" package --- https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf
 # - R-Markdown --- https://rmarkdown.rstudio.com/
+# - S3 --- https://adv-r.hadley.nz/s3.html
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
