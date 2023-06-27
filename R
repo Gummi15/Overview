@@ -31,15 +31,9 @@
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# The code presented here is part of the code that I wrote for master's thesis. The idea is to show as much as my experience
+# The code presented here is part of the code that I wrote for master's thesis. The idea is to show some of my skills and experience in R. 
+# "Some" as I want it to be something that gives a good idea of my skills and experience, but still fairly quick to read.
 
-#First part  was to create a spec that would hold information of what model it was, optimization method etc.
-
-#######################################
-##########CreateSpec Funciton##########
-#######################################
-
-#Spec function
 CreateSpec <- function(Model, iDist = "norm", K, OptimMethod = "Optim", Scaling = 0.5, UseGASP = FALSE, dNP = 10, EMOnly = F) {
   
   lOut <- list()
@@ -210,9 +204,6 @@ f_optimizer <- function(vY, Spec, StartValues) {
       lPn0[["vNu"]] <- StartValues$vNu
     }
     
-    if(iType == "GJR") {
-      lPn0[["vPhi"]] <- rep(2*(0.9999 - 0.9998), K)
-    }
     
     #Next unmap them
     lPw <- f_lPn2lPw(lPn0, Spec)
@@ -236,11 +227,6 @@ f_optimizer <- function(vY, Spec, StartValues) {
         UpperLimit <- c(UpperLimit, rep(vNu_Upper(), K))
         #LowerLimit <- c(LowerLimit, rep(-20, K))
         #UpperLimit <- c(UpperLimit, rep(20, K))
-      }
-      
-      if(iType == "GJR") {
-        LowerLimit <- c(LowerLimit, rep(-10, K))
-        UpperLimit <- c(UpperLimit, rep(10, K))
       }
       
       clusterExport(MyCluster, c("f_v2l", "f_lPw2lPn", "f_map", "wA_Upper", "vA_Lower", "vA_Upper", "vB_Lower", "vB_Upper", "MixGAS", 
@@ -305,17 +291,11 @@ f_optimizer <- function(vY, Spec, StartValues) {
         UpperLimit <- c(UpperLimit, rep(vNu_Upper(), K))
       }
       
-      if(iType == "GJR") {
-        LowerLimit <- c(LowerLimit, rep(-10, K))
-        UpperLimit <- c(UpperLimit, rep(10, K))
-      }
-      
       tmp_optim <- DEoptim::DEoptim(fn_LLK, lower = LowerLimit, upper = UpperLimit,
                                     DEoptim.control(NP = dNP*length(vPw), F = 0.8, CR = 0.9, itermax = 200, cluster = MyCluster),
                                     vY = vY, Spec = Spec, vNames = vNames, StartVal = StartSigma2W)
       stopCluster(MyCluster)
       lPn <- f_v2lw2ln(setNames(tmp_optim$optim$bestmem, vNames), Spec)
-
       
     } else {
       tmp_optim <- solnp(vPw, fn_LLK,  vY = vY, Spec = Spec, StartVal = StartSigma2W, vNames = vNames)
