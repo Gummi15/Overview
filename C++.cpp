@@ -1,7 +1,4 @@
 // This is a short describtion of the experience that I have in C++.
-// It includes an overview of what I have used C++ for, the books I have read in order to improve my C++ skills, 
-// and some examples of code I have written
-
 
 // ----------------------------------------------------------------------------------------------------------------------------
 // The code preseneted here is code that I wrote for my master's thesis. 
