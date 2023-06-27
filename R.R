@@ -1,4 +1,4 @@
-# This is a short describtion of the experience that I have in R.
+# This is a short description of the experience that I have in R.
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
