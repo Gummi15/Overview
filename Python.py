@@ -1,23 +1,30 @@
-# Python code
+# This is a short description of the experience that I have in Python.
 
-# Sklearn
-# Tensorflow
-# Tourche
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+# I have used Python for:
+# - Data processing & data analysis: Regressions (linear, Lasso, Ridge), principal component analysis
+# - Machine learning/Statistical leanrning: Neural Networks (fully connected, autoencoder, convolutional), natural language processing
+# - Decision trees
+# - Webscrapping
 
-ch#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Oct  7 16:12:01 2020
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-@author: bjoern
-"""
+# Books I have read:
 
-#%matplotlib inline
-import numpy as np
-import os
-os.getcwd()
-os.chdir('/home/bjoern/Desktop/Studie/9. Semester/ML/')
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Short overview of some of the packages I have experience with
+
+# - Pandas --- https://pandas.pydata.org/
+# - Matplotlip --- https://matplotlib.org/
+# - Numpy --- https://numpy.org/
+# - Selenium --- https://selenium-python.readthedocs.io/
+# - Sklearn --- https://scikit-learn.org/stable/
+# - Tensorflow ---https://www.tensorflow.org/
+# - PyTorch --- https://pytorch.org/
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 class NN():
     
@@ -30,10 +37,7 @@ class NN():
         print('Neural net initialized with random values')
         
     def predict(self, X):    
-        """ Evaluate the network on given data batch 
-        
         np.maximum may come in handy
-        
         Args:
         X: np.array shape (n, d)  Each row is a data point
         
@@ -50,10 +54,7 @@ class NN():
         tmp_test = np.dot(tmp_test, self.W2) + self.b2
         pred = tmp_test
         
-        ### YOUR CODE HERE
-        ### END CODE
         return pred
-    
     
     def score(self, X, y):
         """ Compute least squares loss (1/n sum (nn(x_i) - y_i)^2)
