@@ -8,7 +8,6 @@ VecType pdfnorm(const VecType& x, const VecType& Mu, const VecType& Sigma) {
     return pdf;
 }
 
-
 template<typename VecType>
 VecType stddens(const typename VecType::elem_type& x, const VecType& Mu, const VecType& Sigma, const VecType& Nu) {
     const size_t K = Nu.size();
@@ -66,10 +65,8 @@ double getLLK(const VecType& vY, const MatType& mMu, const MatType& mSigma2, con
     return output;
 }
 
-
-
 // [[Rcpp::export]]
-List Mixgas.DAMM(const arma::vec& vY, const List& lP, const List& Spec, const List& StartValues) {
+List Mixgas_DAMM(const arma::vec& vY, const List& lP, const List& Spec, const List& StartValues) {
   
   //Get the spec
   int iT = vY.size();
@@ -85,8 +82,6 @@ List Mixgas.DAMM(const arma::vec& vY, const List& lP, const List& Spec, const Li
   
   //Set double variables/vectors
   List tmp_Xi;
-  //arma::vec tmp_WScore(K);
-  //arma::vec tmp_SigmaXi;
   
   //Paras W
   arma::vec wKappa = lP["wKappa"];
@@ -112,7 +107,6 @@ List Mixgas.DAMM(const arma::vec& vY, const List& lP, const List& Spec, const Li
   //Set initial values
   mSigma2.col(0) = vSigma2_start;
   mSigma_tilde.col(0) = log(mSigma2.col(0))/2;
-  //mSigma_tilde.col(0) = log(mSigma2.col(0));
   mW.col(0) = vW_start;
   mW_tilde.col(0) = WUnmap(mW.col(0));
   
@@ -122,12 +116,7 @@ List Mixgas.DAMM(const arma::vec& vY, const List& lP, const List& Spec, const Li
   for(int j = 0; j<(K-1); j++) {
     mMu.row(j).fill(vMu(j));
   }
-  //mMu((K-1),0) = -mW.col(0).rows(0,(K-2))/mW((K-1),0)*vMu.rows(0, (K-2));
-  //double tmp_1 = mW((K-1),0);
-  //arma::vec tmp_2 = mW.col(0).rows(0,(K-2));
-  //arma::vec tmp_3 = vMu.rows(0,K-2);
   arma::vec tmp_Mu = ((mW.col(0).rows(0,(K-2))).t()*vMu.rows(0,K-2))/mW((K-1),0);
-  //double tmp = (mW.col(0).rows(0,(K-2))/mW((K-1),0)).t()*vMu.rows(0, (K-2));
   mMu((K-1),0) = -tmp_Mu(0);
   
   if(iType == "GJR") {
@@ -162,7 +151,6 @@ List Mixgas.DAMM(const arma::vec& vY, const List& lP, const List& Spec, const Li
     Xi_test.col(i-1) = tmp_SigmaXi;
     
     tmp_Jac = WJac(mW_tilde.col(i-1));
-    //Jac_test.col(i-1) = tmp_Jac;
     
     mW_tilde.col(i) = wKappa + wA*tmp_Jac.t()*tmp_WScore + wB*mW_tilde.col(i - 1);
     mW.col(i) = WMap(mW_tilde.col(i));
@@ -170,8 +158,6 @@ List Mixgas.DAMM(const arma::vec& vY, const List& lP, const List& Spec, const Li
     A_term = A_cal(vY(i - 1), mMu.col(i-1), sqrt(mSigma2.col(i-1)), Spec, vNu);
     Aterm_test.col(i-1) = A_term;
     
-    //Mu
-    //mMu((K-1),i) = mW.col(i).rows(0,(K-2))/mW((K-1),i)*vMu.rows(i, (K-2));
     arma::vec tmp_Mu = ((mW.col(i).rows(0,(K-2))).t()*vMu.rows(0,K-2))/mW((K-1),i);
     mMu((K-1),i) = -tmp_Mu(0);
     
@@ -195,15 +181,6 @@ List Mixgas.DAMM(const arma::vec& vY, const List& lP, const List& Spec, const Li
     }
       
     mSigma2(j,i) = exp(2*mSigma_tilde(j,i));
-    //mSigma2(j,i) = exp(mSigma_tilde(j,i));
-    
-    if(mSigma2(j,i) > 150) {
-      //mSigma2(j,i) = 150;
-    }
-    
-    if(mSigma2(j,i) < 0.02) {
-      //mSigma2(j,i) = 0.02;
-    }
     
     }
     
@@ -234,14 +211,11 @@ List Mixgas.DAMM(const arma::vec& vY, const List& lP, const List& Spec, const Li
 }
 
 
-
-
 // [[Rcpp::export]]
-List MixGAS_Simulation(const int& iT, const List& lP, const List& Spec, const List& StartValues) {
+List MixSim_DAMM(const List& Spec, const int& iT, const List& lP, const List& StartValues) {
   
   //const arma::vec& vNoise
   //Get the spec
-  //const int iT = vNoise.size();
   arma::vec vY(iT);
   arma::vec vState(iT);
   const int K = Spec["K"];
@@ -280,7 +254,6 @@ List MixGAS_Simulation(const int& iT, const List& lP, const List& Spec, const Li
   //Set initial values
   mSigma2.col(0) = vSigma2_start;
   mSigma_tilde.col(0) = log(mSigma2.col(0))/2;
-  //mSigma_tilde.col(0) = log(mSigma2.col(0));
   mW.col(0) = vW_start;
   mW_tilde.col(0) = WUnmap(mW.col(0));
   
@@ -308,7 +281,6 @@ List MixGAS_Simulation(const int& iT, const List& lP, const List& Spec, const Li
   for(int i = 0; i<K; i++) {
     vK(i) = (i + 1);
   }
-  //as<arma::mat>(vK);
   
   vState(0) = f_sample(vK, 1, 1, wrap(mW.col(0)));
   
@@ -328,14 +300,12 @@ List MixGAS_Simulation(const int& iT, const List& lP, const List& Spec, const Li
     
     tmp_Jac = WJac(mW_tilde.col(i-1));
 
-    
     mW_tilde.col(i) = wKappa + wA*tmp_Jac.t()*tmp_WScore + wB*mW_tilde.col(i - 1);
     mW.col(i) = WMap(mW_tilde.col(i));
     
     A_term = A_cal(vY(i - 1), mMu.col(i-1), sqrt(mSigma2.col(i-1)), Spec, vNu);
     
     //Mu
-    
     arma::vec tmp_Mu = ((mW.col(i).rows(0,(K-2))).t()*vMu.rows(0,K-2))/mW((K-1),i);
     mMu((K-1),i) = -tmp_Mu(0);
     
@@ -359,12 +329,8 @@ List MixGAS_Simulation(const int& iT, const List& lP, const List& Spec, const Li
       }
       
       mSigma2(j,i) = exp(2*mSigma_tilde(j,i));
-      //mSigma2(j,i) = exp(mSigma_tilde(j,i));
-      
 
     }
-    
-    
     
     vState(i) = f_sample(vK, 1, 1, wrap(mW.col(i)));
     if(iDist == "std") {
