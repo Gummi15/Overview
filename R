@@ -4,7 +4,11 @@
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
+# I have used R for:
+# - Econometric time series: GARCH-type models, ARIMA models, realized volatility, Brownian motions, VAR models, State-Space models, network analysis
+# - Monte Carlo Simulation: Generating random variables, numerical integration, Bayesian statistics, hidden Markov models, Markov Chain Monte Carlo,
+# - Machine learning/Statistical leanrning: (Spectral) Cluster analysis, linear/quadratic discriminant analysis, kernel methods, kernel density estimation
+# - Data processing & data analysis: Very broad, but many different types of data supplied by clients in my job as consultant.
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -23,9 +27,7 @@
 # - Since I have used R for some heavy computations and models, I have sometimes sped up the calculations by coding parts in C++, 
 # and then integrating the C++ using the "Rcpp" and "RcppArmadillo" packages --- https://www.rcpp.org/, https://cran.r-project.org/web/packages/RcppArmadillo/index.html
 # - Another package I have used to sped up calculations is the "parallel" package --- https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf
-
-
-
+# - R-Markdown --- https://rmarkdown.rstudio.com/
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
