@@ -12,9 +12,9 @@ In order to improve my knowledge about algorithms, I am currently reading "Intro
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-R: 
-C++: 
-Python: 
+R: https://github.com/Gummi15/Overview/blob/5ce92ddc5e621f0290bc5c9c49a21c5b8ed68fdc/R.R
+C++: https://github.com/Gummi15/Overview/blob/5ce92ddc5e621f0290bc5c9c49a21c5b8ed68fdc/C%2B%2B.cpp
+Python: https://github.com/Gummi15/Overview/blob/5ce92ddc5e621f0290bc5c9c49a21c5b8ed68fdc/Python.py
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
