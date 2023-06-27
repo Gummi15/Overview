@@ -1,13 +1,35 @@
 # This is a short describtion of the experience that I have in R.
-# It includes an overview of the books I have read in order to improve my R skills, what I have used R for, 
+# It includes an overview of what I have used R for, the books I have read in order to improve my R skills, 
 # the packages I have used in connection with this, and some examples of code I have written
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Books I have read
 
+# "R for Data Science" (2016), by Garrett Grolemund and Hadley Wickham - https://r4ds.had.co.nz/
+# "Advanced R, Second Edition" (2019), by Hadley Wickham - https://adv-r.hadley.nz/
+# "The R Inferno" (2012), by Patrick Burns - https://www.burns-stat.com/pages/Tutor/R_inferno.pdf
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Short overview of some of the packages I have experience with
+
+# - I have used the "Tidyverse" quite alot, particularly the "dplyr", "ggplot2", and "tibble" packages. --- https://www.tidyverse.org/
+# - As some of work I have used R for and some of models I have implemented have been quite
+# - Since I have used R for some heavy computations and models, I have sometimes sped up the calculations by coding parts in C++, 
+# and then integrating the C++ using the "Rcpp" and "RcppArmadillo" packages --- https://www.rcpp.org/, https://cran.r-project.org/web/packages/RcppArmadillo/index.html
+# - Another package I have used to sped up calculations is the "parallel" package --- https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf
 
 
 
 
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# The code presented here is part of the code that I wrote for master's thesis. The idea is to show as much as my experience
 
 #First part  was to create a spec that would hold information of what model it was, optimization method etc.
 
