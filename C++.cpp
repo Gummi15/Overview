@@ -1,3 +1,11 @@
+// This is a short describtion of the experience that I have in C++.
+// It includes an overview of what I have used C++ for, the books I have read in order to improve my C++ skills, 
+// and some examples of code I have written
+
+
+// ----------------------------------------------------------------------------------------------------------------------------
+// The code preseneted here is code that I wrote for my master's thesis. 
+
 template<typename VecType>
 VecType pdfnorm(const VecType& x, const VecType& Mu, const VecType& Sigma) {
     VecType pdf = exp(-0.5 * square(x - Mu) / square(Sigma)) / (sqrt(2.0 * arma::datum::pi) * Sigma);
